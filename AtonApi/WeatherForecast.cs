@@ -1,4 +1,4 @@
-namespace src;
+namespace AtonApi;
 
 public class WeatherForecast
 {
