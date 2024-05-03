@@ -8,8 +8,8 @@ builder.Services.AddSwaggerGen(options => {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "ATON Api",
-        Description = "ATON Web Api",
+        Title = "Aton API",
+        Description = "Aton Web API",
         // TermsOfService = new Uri("https://example.com/terms"),
         // Contact = new OpenApiContact
         // {
