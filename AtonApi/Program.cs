@@ -1,10 +1,18 @@
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 builder.Services.AddControllers();
+builder.Services.AddDbContext<AtonApi.Models.UserContext>(opt => opt.UseInMemoryDatabase("MemoryDB"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options => {
+    options.IncludeXmlComments(Path.Combine(
+        AppContext.BaseDirectory
+        , "AtonApi.xml"
+    ));
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
@@ -36,4 +44,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.Logger.LogInformation("Use token " + AtonApi.Controllers.UserController.token + " to access the site");
 app.Run();
